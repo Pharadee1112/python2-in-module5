@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow Form</title>
+
+    <style>
+        body {
+            background: #eaf7f4;
+            font-family: "Inter", sans-serif;
+            display: flex;
+            justify-content: center;
+            padding-top: 40px;
+        }
+
+        form-container {
+            background: white;
+            padding: 50px;
+            border-radius: 12px;
+            width: 500px;
+            margin-right: 50px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 104%;
+            padding: 10px;
+            border: none;
+            background: #fff8ab;
+            color: rgb(9, 9, 9);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Borrow a Book</h2>
+        <form action="/send" method="POST" style="width: 500.083px;">
+
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Your name" required>
+
+            <label>Borrow Date</label>
+            <input type="date" name="borrow_date" required>
+
+            <label>LINE Notify Token</label>
+            <input type="text" name="token" placeholder="Paste your LINE token here" required>
+
+            <button type="submit">Borrow</button>
+        </form>
+    </div>
+
+</body>
+</html>
