@@ -3,40 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>main Library</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Book page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Inter", sans-serif;
+            background-color: #eaf7f4;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            position: fixed; 
+            top: 0;
+            left: -5px;
+            width: 95%;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        .topic1 {
+            margin-top: 150px;
+            font-size: 24px;
+            margin-left: 35px;
+            font-weight: 500;
+        }
+        .topic2 {
+            margin-top: 75px;
+            font-size: 24px;
+            margin-left: 35px;
+            font-weight: 500;   
+        }
+
+        .book-card {
+            display: flex;
+            gap: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            align-items: flex-start;
+            margin: 40px;
+        }
+
+        .book-cover {
+            width: 250px;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .book-info h3 {
+            margin-top: 30px;
+            font-size: 24px;
+        }
+
+        .book-info .desc {
+            margin: 0 0 8px;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        .book-info .main-desc {
+            color: #555;
+            font-size: 17px;
+            line-height: 2;
+        }
+
+        /* Responsive: หน้าเล็กเหลือ 1 คอลัมน์ */
+        @media (max-width: 768px) {
+        .book-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+        .book-cover {
+            margin-bottom: 15px;
+        }
+        .view-btn {
+            background-color: #fff8ab;
+            border: none;
+            padding: 12px 26px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
-    
-    <nav class="navbar fixed">
+    <div class="navbar">
         <div class="logo">✨Library</div>
         <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="books.html">Books</a></li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('books') }}">Books</a></li>
         </ul>
-    </nav>
+    </div>
 
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Welcome to the Library!</h1>
-            <p>Explore our collection and find your next read.</p>
-        </div>
-    </section>
+    <div class="topic1">✨ Recommended Books</div>
 
-    <div class="topic1">✨Recommended Books</div>
-
-    <div class="book-grid">
         <div class="book-card">
-            <img src="IMG_1110.PNG" class="book-cover">
+            <img src="{{ url_for('static', filename='IMG_1110.PNG') }}" alt="The Labye Book" class="book-cover">
             <div class="book-info">
-                <h3>LONGLaBYE Book</h3>
+                <h3>LONGBYE Book</h3>
                 <p class="desc">Description</p>
                 <p class="main-desc">
-                    Young artist QLER from What The Duck steps into the role of a writer, sharing his struggles with self-doubt through warm, heartfelt words paired with ToddyInTheMood’s illustrations. Together, they create a comforting story that encourages readers to see the beauty in what they create.
+                    Young artist QLER from the label What The Duck, known for hit songs like “Alice,” “Jai Loy,”
+                    “Like I Used to,” and “Phajan,” takes on the role of a writer in this book. He shares his
+                    personal struggles with self-doubt through heartfelt words and illustrations by ToddyInTheMood.
+                    This combination creates a warm and touching storytelling experience, offering encouragement to
+                    everyone who reads it.
+                    “Because everything in this world has its own beauty, no matter the outcome. Don't forget to
+                    take pride in what you create.”
                 </p>
-                <a href="labye.html">
-                    <button class="view-btn">check out book</button> 
-                </a>       
+                <a href="{{ url_for('labye') }}">
+                    <button class="view-btn">Check out a book</button>
+                </a>               
             </div>
         </div>
     </div>
@@ -45,14 +139,14 @@
 
     <div class="book-grid">
         <div class="book-card">
-            <img src="IMG_1116.PNG" class="book-cover">
+            <img src="{{ url_for('static', filename='IMG_1116.PNG') }}"alt="The Labye Book" class="book-cover">
             <div class="book-info">
                 <h3>The let them theory Book</h3>
                 <p class="desc">Description</p>
                 <p class="main-desc">
                     A recommended self-help book that guides readers to let go of the need to control other people's behaviors and thoughts. By applying the “Let Them” principle to accept others as they are, and the “Let Me” principle to focus on self-development, readers learn to preserve their emotional energy and shift attention toward personal growth.
                 </p>
-                <a href="/project/">
+                <a href="{{ url_for('labye') }}">">
                     <button class="view-btn">Check out a book</button>
                 </a>               
             </div>
@@ -61,7 +155,7 @@
 
     <div class="book-grid">
         <div class="book-card">
-            <img src="IMG_1124.PNG" class="book-cover">
+            <img src="{{ url_for('static', filename='IMG_1116.PNG') }}" alt="The Labye Book" class="book-cover">
             <div class="book-info">
                 <h3>Manifest Book</h3>
                 <p class="desc">Description</p>
@@ -77,7 +171,7 @@
 
     <div class="book-grid">
         <div class="book-card">
-            <img src="IMG_1118.PNG" class="book-cover">
+            <img src="IMG_1118.PNG" alt="The Labye Book" class="book-cover">
             <div class="book-info">
                 <h3>Manifest in Action Book</h3>
                 <p class="desc">Description</p>
@@ -93,7 +187,7 @@
 
     <div class="book-grid">
         <div class="book-card">
-            <img src="IMG_1120.PNG" class="book-cover">
+            <img src="IMG_1120.PNG" alt="The Labye Book" class="book-cover">
             <div class="book-info">
                 <h3>The Science of Obesity: Decoding the Art of Weight Loss for Lasting Health book</h3>
                 <p class="desc">Description</p>
@@ -109,7 +203,7 @@
 
     <div class="book-grid">
         <div class="book-card">
-            <img src="IMG_1125.PNG" class="book-cover">
+            <img src="IMG_1125.PNG" alt="The Labye Book" class="book-cover">
             <div class="book-info">
                 <h3>Do it 1% more than them Book</h3>
                 <p class="desc">Description</p>
@@ -127,7 +221,7 @@
 
     <div class="book-grid">
         <div class="book-card">
-            <img src="IMG_1117.PNG" class="book-cover">
+            <img src="IMG_1117.PNG" alt="The Labye Book" class="book-cover">
             <div class="book-info">
                 <h3>Gone Fishing with Buffett Book</h3>
                 <p class="desc">Description</p>
@@ -143,7 +237,7 @@
 
     <div class="book-grid">
         <div class="book-card">
-            <img src="IMG_1123.PNG" class="book-cover">
+            <img src="IMG_1123.PNG" alt="The Labye Book" class="book-cover">
             <div class="book-info">
                 <h3>Psychology of money book</h3>
                 <p class="desc">Description</p>
@@ -161,7 +255,7 @@
 
         <div class="book-grid">
             <div class="book-card">
-                <img src="IMG_1121.PNG"  class="book-cover">
+                <img src="IMG_1121.PNG" alt="The Labye Book" class="book-cover">
                 <div class="book-info">
                     <h3>Life is short, but there's still time to make each day count for yourself book</h3>
                     <p class="desc">Description</p>
@@ -174,5 +268,6 @@
                 </div>
             </div>
         </div>
+
 </body>
 </html>

@@ -15,7 +15,7 @@
             padding-top: 40px;
         }
 
-        form-container {
+        .form-container {
             background: white;
             padding: 50px;
             border-radius: 12px;
@@ -61,8 +61,8 @@
 
     <div class="form-container">
         <h2>Borrow a Book</h2>
-        <form action="/send-email" method="POST" style="width: 500.083px;">
-
+        <form action="{{ url_for('submit') }}" method="POST">
+            
             <label>Name</label>
             <input type="text" name="name" placeholder="Your name" required>
 
@@ -73,6 +73,7 @@
             <input type="email" name="email" placeholder="email" required>
 
             <button type="submit">Borrow</button>
+
         </form>
     </div>
 

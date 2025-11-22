@@ -1,56 +1,46 @@
-from flask import Flask, request, render_template
-import smtplib
-from email.mime.text import MIMEText
+from flask import Flask, render_template, redirect, url_for, request
 
 app = Flask(__name__)
 
-# --------- Decorator ----------
-def log_route(func):
-    def wrapper(*args, **kwargs):
-        print(f"Route called: {func.__name__}")
-        return func(*args, **kwargs)
-    return wrapper
+# หน้าแรก
+@app.route('/')
+def main():
+    return render_template('main.html')
 
-# --------- OOP Email Service ----------
-class EmailService:
-    def __init__(self, sender, password):
-        self.sender = sender
-        self.password = password
+# หน้า Home
+@app.route('/home')
+def home():
+    return render_template('home.html')
 
-    def send(self, to, message):
-        msg = MIMEText(message)
-        msg["Subject"] = "Library Notification"
-        msg["From"] = self.sender
-        msg["To"] = to
+# หน้า Books
+@app.route('/books')
+def books():
+    return render_template('books.html')
 
-        try:
-            with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-                server.login(self.sender, self.password)
-                server.sendmail(self.sender, to, msg.as_string())
-        except Exception as e:
-            print("Email error:", e)
+@app.route('/labye')
+def labye():
+    return render_template('labye.html')
 
-# ใช้ email object
-email_service = EmailService("YOUR_EMAIL@gmail.com", "YOUR_PASSWORD")
+@app.route('/borrowpages')
+def borrowpages():
+    return render_template('borrowpages.html')
 
-# --------- Flask Routes ----------
-@app.route("/")
-def index():
-    return render_template("form.html")
+# รับข้อมูล form
+@app.route('/submit', methods=['POST'])
+def submit():
+    name = request.form['name']
+    borrow_date = request.form['borrow_date']
+    email = request.form['email']
 
-@app.route("/send-email", methods=["POST"])
-@log_route
-def send_email():
-    name = request.form["name"]
-    borrow_date = request.form["borrow_date"]
-    user_email = request.form["email"]
+    # คุณสามารถบันทึกลงไฟล์ หรือ database ได้ที่นี่
+    print(f"{name} | {borrow_date} | {email}")  # แค่โชว์ใน console
 
-    # บันทึกลงไฟล์
-    with open("borrow_log.txt", "a") as f:
-        f.write(f"{name} borrowed on {borrow_date}\n")
+    return redirect(url_for('success'))
 
-    # ส่งอีเมล
-    message = f"Hello {name},\nYour borrow date: {borrow_date}"
-    email_service.send(user_email, message)
+# หน้า success
+@app.route('/success')
+def success():
+    return render_template('success.html')
 
-    return f"Email sent to {user_email}!"
+if __name__ == "__main__":
+    app.run(debug=True)

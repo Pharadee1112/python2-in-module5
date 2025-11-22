@@ -175,8 +175,8 @@
     <div class="navbar">
         <div class="logo">✨Library</div>
         <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="books.html">Books</a></li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('books') }}">Books</a></li>
         </ul>
     </div>
 
@@ -199,7 +199,7 @@
             <div class="price">
                 30.00 THB
             </div>
-            <a href="add.html">
+            <a href="{{ url_for('borrowpages') }}">
                 <button class="view-btn">Add to cart</button>
             </a>
         </div>
